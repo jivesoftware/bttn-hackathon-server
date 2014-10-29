@@ -3,6 +3,6 @@ To push to heroku
 git push heroku master
 
 the end-point is
-http://bttn.jivedev.jivesoftware.com/bttn/event
+http://bttn.jivedev.jivesoftware.com/event
 
 Update
