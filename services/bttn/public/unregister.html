@@ -1,0 +1,43 @@
+<html>
+  
+  <head>
+    <title>Hackathon bt.tn Unregister</title>
+    <style type="text/css">
+      #form-wrapper { background-color: #efefef; width: 640px; padding: 8px; }
+      .form-field { padding-top: 8px; }
+      p.meta-details { color: #8a8a8a; text-decoration: italic; margin-top: 2px; font-size: .85em; }
+      label { font-weight: bold; }
+      pre { background-color: #efefef; width: 640px; padding: 8px;  }    
+      div.nav { float: right; }
+    </style>
+  </head>
+  <body>
+      <div class="nav">
+        <a href="/menu">menu</a> |  <a href="/register">register</a> | <a href="/unregister">unregister</a>      
+      </div>
+      <img src="images/jive-developer.png" style="float: left; margin: 0px 8px 8px 0px;" />
+      <h1>bt.tn - Jive Hackathon Proxy Server - Unregister</h1>
+      <p>Use the form below to unregister your callback end-point from Jive Hackathon bt.tn's</p>
+      <div id="form-wrapper">
+      <form action="/listener" method="DELETE">
+        <div class="form-field">
+          <label for="bttn">Bttn Name:</label>
+          <select id="bttn" name="bttn">
+              {{#bttns}}
+                <option value="{{id}}">{{label}} - {{color}}</option>
+              {{/bttns}}
+          </select>
+          <p class="meta-details">Note: Choose the Jive Hackathon bt.tn you'd like to unregister events</p>
+        </div>
+        <!-- ####### -->
+        <div class="form-field">
+          <label for="callback">Callback URL:</label><br/>
+          <input type="text" id="callback" name="callback" value="" size="100"/>
+          <p class="meta-details">Note: Your callback URL must begin with <strong>http</strong> and match exactly!</p>
+        </div>
+        <input type="submit" value="Unregister" />
+      </form>
+    </div>
+  </body>
+
+</html>

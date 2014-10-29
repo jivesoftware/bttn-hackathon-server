@@ -1,0 +1,23 @@
+<html>
+  
+  <head>
+    <title>Hackathon bt.tn Challenges</title>
+    <link rel="stylesheet" type="text/css" href="{{content.remoteHost}}/styles/jive-base.css" />
+    <style type="text/css" media="screen">
+       div.timestamp { float: right; margin: 2px 2px 8px 8px; font-size: .85em; }
+    </style>
+     <META http-equiv="refresh" content="{{refreshInterval}};URL=/challenges" />
+  </head>
+  <body>
+      <div class="timestamp">
+        Last Refreshed: {{timestamp}}
+      </div>    
+      <div id="mainwrapper">
+        <h1>{{content.subject}}</h1>
+        <div class="content">
+          {{{content.body}}}
+        </div>
+      </div>
+  </body>
+
+</html>

@@ -1,0 +1,120 @@
+{
+    "clientUrl": "http://speedy-warrior-99-145514.usw1-2.nitrousbox.com",
+    "port": "8091",
+    "development": true,
+    "logLevel": "DEBUG",
+    "challengeScreen" : {
+      "enabled" : true,
+      "contentHostURL" : "https://community.jivesoftware.com",
+      "contentResourceURL" : "/api/core/v3/contents/862123",
+      "refreshIntervalSec" : 301
+    },
+    "api" : {
+      "key" : "201410AK543f7b15JL81bg34uuxeJ7IvGw8c3dDhN6Ul7DNWWwqroG3u5m5D62aR ",
+      "host" : "https://api.bt.tn",
+      "version" : "/2014-06/22",
+      "services" : {
+        "oauth2" : "/oauthv2/token",
+        "counter" : "/counter",
+        "feed" : "/feed",
+        "bttns" : "/bttns",
+        "hook" : "/hook",
+        "info" : "/info",
+        "unhook" : "/unhook",
+        "version" : "/version",
+        "callback" : "/callback"
+      }
+    },
+    "bttns" : { 
+      "pcb-101" :  { 
+        "id" : "pcb-101", 
+        "label" : "Purple - 001", 
+        "color" : "purple"
+      },
+      "pcb-103" :  { 
+        "id" : "pcb-103", 
+        "label" : "Blue - 001", 
+        "color" : "blue"
+      },      
+      "pcb-105" :  { 
+        "id" : "pcb-105", 
+        "label" : "Green - 001", 
+        "color" : "green"
+      },
+      "pcb-106" :  { 
+        "id" : "pcb-106", 
+        "label" : "Yellow - 001", 
+        "color" : "yellow"
+      },
+      "pcb-107" :  { 
+        "id" : "pcb-107", 
+        "label" : "Orangle - 001", 
+        "color" : "orange"
+      },
+      "pcb-109" :  { 
+        "id" : "pcb-109", 
+        "label" : "Red - 001", 
+        "color" : "red"
+      },
+      "pcb-110" :  { 
+        "id" : "pcb-110", 
+        "label" : "Red - 002", 
+        "color" : "red"
+      },
+      "pcb-118" :  { 
+        "id" : "pcb-118", 
+        "label" : "Orange - 002", 
+        "color" : "orange"
+      },
+      "pcb-121" :  { 
+        "id" : "pcb-121", 
+        "label" : "Yellow - 002", 
+        "color" : "yellow"
+      },
+      "pcb-114" :  { 
+        "id" : "pcb-114", 
+        "label" : "Green - 002", 
+        "color" : "green"
+      },
+      "pcb-115" :  { 
+        "id" : "pcb-115", 
+        "label" : "Blue - 002", 
+        "color" : "blue"
+      },
+      "pcb-116" :  { 
+        "id" : "pcb-116", 
+        "label" : "Purple - 002", 
+        "color" : "purple"
+      },
+      "white" :  { 
+        "id" : "white", 
+        "label" : "white (virtual)", 
+        "color" : "white"
+      },
+      "blue" :  { 
+        "id" : "blue", 
+        "label" : "blue (virtual)", 
+        "color" : "blue"
+      },
+      "green" :  { 
+        "id" : "green", 
+        "label" : "green (virtual)", 
+        "color" : "green"
+      },
+      "orange" :  { 
+        "id" : "orange", 
+        "label" : "orange (virtual)", 
+        "color" : "orange"
+      },
+      "red" :  { 
+        "id" : "red", 
+        "label" : "red (virtual)", 
+        "color" : "red"
+      },
+      "purple" :  { 
+        "id" : "purple", 
+        "label" : "purple (virtual)", 
+        "color" : "purple"
+      }
+    }
+}

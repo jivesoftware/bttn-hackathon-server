@@ -1,0 +1,88 @@
+<html>
+  
+  <head>
+    <title>bt.tn - Jive Hackathon Proxy Server - Register</title>
+    <style type="text/css">
+      #form-wrapper { background-color: #efefef; width: 800px; padding: 8px; }
+      .form-field { padding-top: 8px; }
+      p.meta-details { color: #8a8a8a; text-decoration: italic; margin-top: 2px; font-size: .85em; }
+      label { font-weight: bold; }
+      pre { background-color: #efefef; width: 800px; padding: 8px;  }
+      div.nav { float: right; }
+    </style>
+  </head>
+  <body>
+      <div class="nav">
+        <a href="/menu">menu</a> |  <a href="/register">register</a> | <a href="/unregister">unregister</a>      
+      </div>
+      <img src="images/jive-developer.png" style="float: left; margin: 0px 8px 8px 0px;" />
+      <h1>bt.tn - Jive Hackathon Proxy Server - Register</h1>
+      <p>Use the form below to register your callback end-point to Jive Hackathon bt.tn's</p>
+      <div id="form-wrapper">
+      <form action="/listener" method="POST">
+        <div class="form-field">
+          <label for="bttn">Bttn Color:</label>
+          <select id="bttn" name="bttn">
+              {{#bttns}}
+                <option value="{{id}}">{{label}}</option>
+              {{/bttns}}
+          </select>
+          <p class="meta-details">Note: Select the bt.tn whose events you'd like to receive</p>
+        </div>
+        <!-- ####### -->
+        <div class="form-field">
+          <label for="callback">Callback URL:</label><br/>
+          <input type="text" id="callback" name="callback" value="" size="100"/>
+          <p class="meta-details">Note: Your callback URL must begin with <strong>http</strong></p>
+        </div>
+        <!-- ####### -->
+        <div class="form-field">
+          <label for="clientID">Client ID: (optional)</label><br/>
+          <input type="text" id="clientID" name="clientID" value="" size="100"/>
+          <p class="meta-details">Note: This helps distinguish your end-points in our database.</p>
+        </div>
+        <input type="submit" value="Register" />
+      </form>
+    </div>
+
+    <h3>How To Setup Your Callback End-Point</h3>
+    <ul>
+      <li>Make sure that your service end-point is publicly visible</li>
+      <li>Configure Your End-Point to receive <strong>POST</strong> requests</li>
+      <li>bt.tn event data will be sent to you</li>
+    </ul>
+
+<span>Sample <strong>Node.js</strong> Service</span>:
+<pre>exports.processBttnPing = {
+    'path' : '/ping',
+    'verb' : 'POST',
+    'route': function(req, res) { 
+
+        var theDate = req.body.date;
+        var theTime = req.body.time;
+        var user = req.body.user;
+        var url = req.body.url;
+        var name = req.body.name;
+        var id = req.body.id;
+        var location = req.body.location;
+        var color = req.body.color;
+      
+        console.log('PING received: ',id,theDate,theTime,user,url,name,location,color);
+        res.status(200).end();
+    }
+};</pre>
+
+<span>Sample <strong>POST</strong> Data</span>:
+<pre>{
+  "date" : "2014-10-06", 
+  "time" : "10:46:41", 
+  "user : "Jive Developers", 
+  "url" : "http://www.google.com", 
+  "name" : "moe", 
+  "id" : "moe",
+  "location" : "36.109308,-115.175289",
+  "color" : "red"
+}</pre>
+  </body>
+
+</html>

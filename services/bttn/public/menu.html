@@ -1,0 +1,115 @@
+<html>
+  
+  <head>
+    <title>bt.tn - Jive Hackathon Proxy Server - Menu</title>
+    <link rel="stylesheet" type="text/css" href="/bttn/stylesheets/buttons.css">
+    <script type="text/javascript" src="/javascripts/jQuery-1.10.2.js"></script>
+    <script type="text/javascript" src="/bttn/javascripts/buttons.js"></script>
+    <script type="text/javascript">
+        $(function() {
+           $('a.button').click(
+               function(item) {
+                 var theDate = new Date();
+                 $("#bttnDate").val(theDate.getFullYear()+'-'+(theDate.getMonth()+1)+'-'+theDate.getDate());
+                 $("#bttnTime").val(theDate.getHours()+':'+(theDate.getMinutes())+':'+theDate.getSeconds());
+                 $("#bttnColor").val($(this).attr("data-color"));
+                 $("#bttnId").val($(this).attr("data-color"));
+                 /*** SUBMIT THE FORM **/
+                 $.ajax({
+                   type: "POST",
+                   url: $("#bttnSimulate").attr("action"),
+                   data: $("#bttnSimulate").serialize(),
+                   success: function(data) {
+                     $('#status-wrapper').removeClass('success').removeClass('error').addClass('success').text('Success')
+                       .slideDown('fast').delay(800).fadeOut('fast');
+                   },
+                   error: function(xhr, textStatus, errorThrown) {
+                     $('#status-wrapper').removeClass('success').removeClass('error').addClass('error').text(xhr.responseText)
+                       .slideDown('fast').delay(5000).fadeOut('fast');
+                     $('#status-wrapper').append(' - <a href="/register">Register your bt.tn?</a>');
+                   }
+                 });
+               } // end function
+             );
+        });
+    </script>
+    <style type="text/css">
+      #form-wrapper { background-color: #dedede; width: 800px; padding: 8px; text-align: center; }
+      #status-wrapper { border: 1px solid black; width: 798px; padding: 8px; text-align: center; }
+      #status-wrapper.error { background-color: red; color: white; }
+      #status-wrapper.success { background-color: green; color: white; }
+      pre { background-color: #efefef; width: 800px; padding: 8px;  }
+      a.button { width: 100px; height: 100px;  }
+      .jive-label { width: 100px; }
+      div.nav { float: right; }
+      
+    </style>
+  </head>
+  <body>
+      <div class="nav">
+        <a href="/menu">menu</a> |  <a href="/register">register</a> | <a href="/unregister">unregister</a>      
+      </div>
+      <img src="images/jive-developer.png" style="float: left; margin: 0px 8px 8px 0px;" />
+      <h1>bt.tn - Jive Hackathon Proxy Server - Menu</h1>
+    <p>Press any of the buttons below to simulate hits from a bt.tn.<br/><em>Note: You will need to <a href="/register">register</a> your callback URL before you can receive events.</em></p>
+      <div id="form-wrapper">
+        <span class="button-wrap"><a href="#" data-color="white" class="button button-circle button-flat"><img class="jive-label" src="/bttn/images/jive-logo.png"/></a></span>
+        <span class="button-wrap"><a href="#" data-color="blue" class="button button-circle button-flat-primary"><img class="jive-label" src="/bttn/images/jive-logo.png"/></a></span>
+        <span class="button-wrap"><a href="#" data-color="green" class="button button-circle button-flat-action"><img class="jive-label" src="/bttn/images/jive-logo.png"/></a></span>
+        <span class="button-wrap"><a href="#" data-color="orange" class="button button-circle button-flat-highlight"><img class="jive-label" src="/bttn/images/jive-logo.png"/></a></span>
+        <span class="button-wrap"><a href="#" data-color="red" class="button button-circle button-flat-caution"><img class="jive-label" src="/bttn/images/jive-logo.png"/></a></span>
+        <span class="button-wrap"><a href="#" data-color="purple" class="button button-circle button-flat-royal"><img class="jive-label" src="/bttn/images/jive-logo.png"/></a></span>
+        
+        <form id="bttnSimulate" action="/event" method="POST">
+          <input type="hidden" name="date" id="bttnDate" value=""/>
+          <input type="hidden" name="time" id="bttnTime" value=""/>
+          <input type="hidden" name="user" value="Jive Developers" />
+          <input type="hidden" name="url" value="https://community.jivesoftware.com/community/developer" />
+          <input type="hidden" name="name" id="bttnColor" value="" />
+          <input type="hidden" name="id" id="bttnId" value="" />
+          <input type="hidden" name="location" value="36.109308,-115.175289" />
+        </form>          
+    </div>  
+    <div id="status-wrapper" style="display: none;"></div>
+
+    <h3>How To Setup Your Callback End-Point</h3>
+    <ul>
+      <li>Make sure that your service end-point is publicly visible</li>
+      <li>Configure Your End-Point to receive <strong>POST</strong> requests</li>
+      <li>bt.tn event data will be sent to you</li>
+    </ul>
+
+<span>Sample <strong>Node.js</strong> Service</span>:
+<pre>exports.processBttnPing = {
+    'path' : '/ping',
+    'verb' : 'POST',
+    'route': function(req, res) { 
+
+        var theDate = req.body.date;
+        var theTime = req.body.time;
+        var user = req.body.user;
+        var url = req.body.url;
+        var name = req.body.name;
+        var id = req.body.id;
+        var location = req.body.location;
+        var color = req.body.color;
+      
+        console.log('PING received: ',id,theDate,theTime,user,url,name,location,color);
+        res.status(200).end();
+    }
+};</pre>
+
+<span>Sample <strong>POST</strong> Data</span>:
+<pre>{
+  "date" : "2014-10-06", 
+  "time" : "10:46:41", 
+  "user : "Jive Developers", 
+  "url" : "http://www.google.com", 
+  "name" : "moe", 
+  "id" : "moe",
+  "location" : "36.109308,-115.175289",
+  "color" : "red"
+}</pre>
+  </body>
+
+</html>
